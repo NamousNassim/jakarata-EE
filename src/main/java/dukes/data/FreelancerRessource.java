@@ -14,7 +14,13 @@ public class FreelancerRessource {
     @Inject
     private FreelancerRepository FreeRepository;
 
-  
+    @GET
+    @Path("/user/{userId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Freelancer getFreelancerByUserId(@PathParam("userId") int userId) {
+        return FreeRepository.findByUser_Id(userId)
+            .orElseThrow(() -> new NotFoundException("Freelancer with user id " + userId + " not found"));
+    }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Freelancer> findAll() {

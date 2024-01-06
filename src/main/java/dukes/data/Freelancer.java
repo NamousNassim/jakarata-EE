@@ -16,7 +16,7 @@ public class Freelancer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "FreelancerID")
-    private int FreelancerID;
+    private int freelancerId;
 
     @ManyToOne
     @JoinColumn(name = "UserID", referencedColumnName = "UserID")
@@ -25,12 +25,12 @@ public class Freelancer {
     public Freelancer() {
     }
 
-    public int getFreelancerID() {
-        return FreelancerID;
+    public int getFreelancerId() {
+        return freelancerId;
     }
 
-    public void setFreelancerID(int FreelancerID) {
-        this.FreelancerID = FreelancerID;
+    public void setFreelancerId(int freelancerId) {
+        this.freelancerId = freelancerId;
     }
 
     public User getUser() {

@@ -56,4 +56,15 @@ public class UserResource {
         }
         throw new NotFoundException("Freelancer with user id " + userId + " not found");
     }
+
+    @GET
+@Path("/client/{userId}")
+@Produces(MediaType.APPLICATION_JSON)
+public Optional<Client> getClientByUserId(@PathParam("userId") Long userId) {
+    Optional<User> user = userRepository.findById(userId);
+    if (user.isPresent() && "client".equals(user.get().getRole())) {
+        return clientRepository.findByUser(user.get());
+    }
+    throw new NotFoundException("Client with user id " + userId + " not found");
+}
 }
